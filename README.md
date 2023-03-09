@@ -1,27 +1,102 @@
-<h1 align="center">Hi im Shizuki</h1>
-<h3 align="center">Software Developer</h3>
+#include <stdio.h>
 
-<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=shizukiz" alt="shizukiz" /></a> </p>
+int main() {
+    int x = 0;
+    int y = 3;
+    int direction = 0;
+    int roomWidth = 15;
+    int roomHeight = 15;
+    int stepCount = 0;
+    int maxSteps = (roomWidth + roomHeight) * 2;
+    int throughDoor = 0;
+    int isOutside = 0;
+    int jumpOverBox = 0;
 
-- 🔭 I’m currently working on [BlackJack Card Game](https://github.com/shizukiz/BlackJackV2)
+    // Schritte machen, bis der Roboter an der Ausgangsposition ist
+    while (x != 0 || y != 3 || direction != 0) {
+        switch (direction) {
+            case 0:
+                y++;
+                break;
+            case 1:
+                x--;
+                break;
+            case 2:
+                y--;
+                break;
+            case 3:
+                x++;
+                break;
+        }
+        
+        if (x == 0 || y == 0 || x == roomWidth - 1 || y == roomHeight - 1) {
+            direction = (direction + 1) % 4;
+        }
 
-- 🌱 I’m currently learning **C#, .Net & HTML/CSS**
+        stepCount++;
 
-- 🤝 I’m looking for help with **C# and .Net**
+        // Überprüfung, ob der Roboter draußen ist
+        if (x == 2 && y == 0) {
+            isOutside = 1;
+            break;
+        }
+    }
 
-- 👨‍💻 All of my projects are available at [My Site](https://shizukiz.github.io/Personal-Site/#aboutme)
+    // Roboter dreht sich im Kreis, wenn er draußen ist
+    if (isOutside) {
+        printf("Ich bin draußen. ");
+        printf("Soll ich mich im Kreis drehen? (0 - Nein, 1 - Ja): ");
+        scanf("%d", &jumpOverBox);
+        if (jumpOverBox) {
+            printf("Ich drehe mich im Kreis...\n");
+            for (int i = 0; i < 4; i++) {
+                printf("Drehung %d\n", i+1);
+                direction = (direction + 1) % 4;
+            }
+        }
+    }
 
-- 📝 I regularly write my Code in [Visual Studio/Code]
+    // Roboter geht zurück ins Haus und dreht sich bei Bedarf
+    while (x != 0 || y != 3 || direction != 0) {
+        switch (direction) {
+            case 0:
+                y++;
+                break;
+            case 1:
+                x--;
+                break;
+            case 2:
+                y--;
+                break;
+            case 3:
+                x++;
+                break;
+        }
+        
+        if (x == 0 || y == 0 || x == roomWidth - 1 || y == roomHeight - 1) {
+            if (isOutside) {
+                // Wenn der Roboter draußen ist, fragen, ob er sich drehen soll
+                printf("Soll ich mich drehen, bevor ich reingehe? (0 - Nein, 1 - Ja): ");
+                scanf("%d", &jumpOverBox);
+                if (jumpOverBox) {
+                    printf("Ich drehe mich...\n");
+                    direction = (direction + 1) % 4;
+                }
+            } else {
+                // Wenn der Roboter im Haus ist, einfach drehen
+                direction = (direction + 1) % 4;
+            }
+        }
+        
+        stepCount++;
+    }
 
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-<a href="https://instagram.com/marvienzz" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="marvienzz" height="30" width="40" /></a>
-<a href="https://discord.gg/https://discord.gg/teaclub" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/discord.svg" alt="https://discord.gg/teaclub" height="30" width="40" /></a>
-</p>
+    // Roboter sagt Auf Wiedersehen
+    printf("Ich bin zurück am Startpunkt. ");
+    printf("Auf Wiedersehen, Herr Baumann!\n");
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://azure.microsoft.com/en-in/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/microsoft_azure/microsoft_azure-icon.svg" alt="azure" width="40" height="40"/> </a> <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="40" height="40"/> </a> <a href="https://www.w3schools.com/cs/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="csharp" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://dotnet.microsoft.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/dot-net/dot-net-original-wordmark.svg" alt="dotnet" width="40" height="40"/> </a> <a href="https://www.java.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> <a href="https://www.photoshop.com/en" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/photoshop/photoshop-line.svg" alt="photoshop" width="40" height="40"/> </a> <a href="https://www.php.net" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg" alt="php" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> </p>
+    printf("Ich habe %d Schritte gemacht.\n", stepCount);
 
-<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=shizukiz&show_icons=true&locale=en&layout=compact" alt="shizukiz" /></p>
+    printf("Ich schalte mich jetzt aus.\n");
 
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=shizukiz&show_icons=true&locale=en" alt="shizukiz" /></p>
+    return 0
