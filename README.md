@@ -97,6 +97,4 @@ int main() {
 
     printf("Ich habe %d Schritte gemacht.\n", stepCount);
 
-    printf("Ich schalte mich jetzt aus.\n");
-
-    return 0
+    printf("Ich schalte mich jetzt aus.\
